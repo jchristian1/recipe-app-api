@@ -1,5 +1,5 @@
 FROM python:3.9-alpine3.13 
-LABEL maintainer="londondeveloper.com"
+LABEL maintainer="christian_flz"
 
 ENV PYTHONUNBUFFERED 1
 
@@ -13,8 +13,9 @@ ARG DEV=false
 RUN  python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    if[ $DEV = "true" ]; \
-        /py/bin/pip install -r /tmp/requirements.dev.text ; \
+    if [ $DEV = "true" ]; \
+       then /py/bin/pip install -r /tmp/requirements.dev.text ; \
+    fi && \
     rm -rf /tmp && \
     adduser \
         --disabled-password \
