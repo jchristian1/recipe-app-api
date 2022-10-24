@@ -9,3 +9,8 @@ sudo docker compose down
 
 ##USING DOCKER TO WRITE TERMINAL COMMANDS
 sudo docker compose run --rm app sh -c "YOUR COMMAND"
+
+
+##SET PERMISSIONS IN TERMINAL
+chown -R $(whoami):$(whoami) app/
+export UID=${UID} && export GID=${GID}
