@@ -1,0 +1,11 @@
+##CREATE A DOCKER CONTAINER 
+docker build .
+
+##CREATE DOCKER CONTAINER USING DOCKER compose
+sudo docker compose build
+
+##DELETE CONTAINER
+sudo docker compose down
+
+##USING DOCKER TO WRITE TERMINAL COMMANDS
+sudo docker compose run --rm app sh -c "YOUR COMMAND"
