@@ -1,5 +1,5 @@
 """
-Test for models.
+Tests for models.
 """
 
 from django.test import TestCase
