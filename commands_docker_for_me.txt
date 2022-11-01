@@ -1,4 +1,4 @@
-##CREATE A DOCKER CONTAINER 
+##CREATE A DOCKER CONTAINER
 docker build .
 
 ##CREATE DOCKER CONTAINER USING DOCKER compose
@@ -17,3 +17,4 @@ sudo docker compose run --rm app sh -c "YOUR COMMAND"
 ##SET PERMISSIONS IN TERMINAL
 chown -R $(whoami):$(whoami) app/
 export UID=${UID} && export GID=${GID}
+sudo chown -R $USER:$USER .
