@@ -5,7 +5,6 @@ Test for the user API.
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
-from app import user
 
 from rest_framework.test import APIClient
 from rest_framework import status
@@ -85,7 +84,7 @@ class PublicUserApiTest(TestCase):
         self.assertIn('token', res.data)
         self.assertEqual(res.status_code,status.HTTP_200_OK)
 
-    def test_create_tocken_bad_credentials(self):
+    def test_create_token_bad_credentials(self):
         """Test returns error if credentials invalid."""
         create_user(emil='test@example.com', password='goodpass')
 
