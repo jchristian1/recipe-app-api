@@ -35,7 +35,7 @@ class PublicUserApiTest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         user = get_user_model().objects.get(email=payload['email'])
         self.assertTrue(user.check_password(payload['password']))
-        self.assertNotIn('password',res.data)
+        self.assertNotIn('password', res.data)
 
     def test_user_with_email_exists_error(self):
         """Test error returned if user with email exists."""
@@ -86,7 +86,7 @@ class PublicUserApiTest(TestCase):
 
     def test_create_token_bad_credentials(self):
         """Test returns error if credentials invalid."""
-        create_user(emil='test@example.com', password='goodpass')
+        create_user(email='test@example.com', password='goodpass')
 
         payload = {'email': 'test@example.com', 'password':'badpass'}
         res = self.client.post(TOKEN_URL, payload)

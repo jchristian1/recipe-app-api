@@ -9,7 +9,7 @@ from django.utils.translation import gettext as _
 
 from rest_framework import serializers
 
-class UserSerializers(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     """Serializers for the user object."""
 
     class Meta:
@@ -25,7 +25,7 @@ class AuthTokenSerializer(serializers.Serializer):
     """Serializer for the user auth token."""
     email = serializers.EmailField()
     password = serializers.CharField(
-        style={'input-type':'paswword'},
+        style={'input_type':'password'},
         trim_whitespace=False,
     )
 
