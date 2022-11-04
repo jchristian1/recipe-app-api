@@ -57,7 +57,7 @@ class Recipe(models.Model):
     price = models.DecimalField(max_digits=5,decimal_places=2)
     link = models.CharField(max_length=255,blank=True)
 
-    """This is the way is gonna be lsted in django app"""
+    """This is the way is gonna be listed in django app"""
     def __str__(self):
         return self.title
 
