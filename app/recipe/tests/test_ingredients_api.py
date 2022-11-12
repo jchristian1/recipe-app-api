@@ -49,7 +49,7 @@ class PrivateIngredientsApiTests(TestCase):
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
 
-        res = self.client.patch(INGREDIENTS_URL)
+        res = self.client.get(INGREDIENTS_URL)
 
         ingredients = Ingredient.objects.all().order_by('-name')
         serializer = IngredientSerializer(ingredients, many=True)
@@ -75,7 +75,7 @@ class PrivateIngredientsApiTests(TestCase):
 
         payload = {'name': 'Coriander'}
         url = detail_url(ingredient.id)
-        res = self.clientpatch(url, payload)
+        res = self.client.patch(url, payload)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         ingredient.refresh_from_db()
