@@ -13,7 +13,7 @@ from recipe import views
 router = DefaultRouter()
 router.register('recipes', views.RecipeViewSet)
 router.register('Tags', views.TagViewSet)
-router.register('Ingredient',views.IngredientViewSet)
+router.register('ingredient',views.IngredientViewSet)
 
 app_name = 'recipe'
 

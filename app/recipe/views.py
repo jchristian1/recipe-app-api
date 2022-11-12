@@ -1,5 +1,5 @@
 """
-Views for the recipi APIs.
+Views for the recipe APIs.
 """
 
 from rest_framework import (

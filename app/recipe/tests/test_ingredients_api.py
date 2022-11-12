@@ -12,18 +12,18 @@ from core.models import Ingredient
 
 from recipe.serializers import IngredientSerializer
 
-INGREDIENTS_URL = reverse('recipe:ingredients-list')
+INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
 def detail_url(ingredient_id):
     """Create and return an ingredient detail URL."""
-    return reverse('recipe:ingredients-list', args=[ingredient_id])
+    return reverse('recipe:ingredient-detail', args=[ingredient_id])
 
 
 def create_user(email='user@example.com', password='testpass123'):
     """Create and return user."""
     return get_user_model().objects.create_user(email=email, password=password)
 
-class PublicIngredientsApiTest(TestCase):
+class PublicIngredientsApiTests(TestCase):
     """Test unauthenticated API request."""
 
     def setUp(self):
@@ -49,7 +49,7 @@ class PrivateIngredientsApiTests(TestCase):
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
 
-        res = self.client.get(INGREDIENTS_URL)
+        res = self.client.patch(INGREDIENTS_URL)
 
         ingredients = Ingredient.objects.all().order_by('-name')
         serializer = IngredientSerializer(ingredients, many=True)
@@ -78,5 +78,5 @@ class PrivateIngredientsApiTests(TestCase):
         res = self.clientpatch(url, payload)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        ingredient.refresh_from_deb()
-        self.assertEqual(ingredient.name. payload['name'])
+        ingredient.refresh_from_db()
+        self.assertEqual(ingredient.name, payload['name'])
