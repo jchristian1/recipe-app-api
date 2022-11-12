@@ -13,6 +13,14 @@ sudo docker compose up
 ##USING DOCKER TO WRITE TERMINAL COMMANDS
 sudo docker compose run --rm app sh -c "YOUR COMMAND"
 
+##RUN TEST WITH DOCKER
+sudo docker compose run --rm app sh -c "python manage.py test"
+
+##RUN flake FOR LINTING WITH DOCKER
+sudo docker compose run --rm app sh -c "flake"
+
+##RUN MIGRATIONS WHEN WE MAKE CHANGES TO THE CORE MODELS, SO CAN BE APPLIEND TO THE DATABASE
+sudo docker compose run --rm app sh -c "python manage.py makemigrations"
 
 ##SET PERMISSIONS IN TERMINAL
 chown -R $(whoami):$(whoami) app/

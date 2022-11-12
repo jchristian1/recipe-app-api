@@ -249,7 +249,7 @@ class PrivateRecipeApiTests(TestCase):
         """Test creating tag when updating a recipe."""
         recipe = create_recipe(user=self.user)
 
-        payload = {'tags': [{'name':'lunch'}]}
+        payload = {'tags': [{'name':'Lunch'}]}
         url = detail_url(recipe.id)
         res = self.client.patch(url, payload, format='json')
 
