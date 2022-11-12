@@ -10,9 +10,11 @@ from core.models import (
 )
 class IngredientSerializer(serializers.ModelSerializer):
     """Serializer for ingredients."""
-    model = Ingredient
-    fields = ['id','name']
-    read_only_fields = ['id']
+
+    class Meta:
+        model = Ingredient
+        fields = ['id','name']
+        read_only_fields = ['id']
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -32,6 +34,12 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['id', 'title', 'time_minutes', 'price', 'link', 'tags']
         read_only_fields = ['id']
+
+class RecipeDetailSerializer(RecipeSerializer):
+    """Serializer for recipe Detail view."""
+
+    class Meta(RecipeSerializer.Meta):
+        fields = RecipeSerializer.Meta.fields + ['description']
 
     def _get_or_create_tags(self, tags, recipe):
         """Handle getting or creating tagas as needed."""
@@ -65,9 +73,5 @@ class RecipeSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-class RecipeDetailSerializer(RecipeSerializer):
-    """Serializer for recipe Detail view."""
 
-    class Meta(RecipeSerializer.Meta):
-        fields = RecipeSerializer.Meta.fields + ['description']
 
