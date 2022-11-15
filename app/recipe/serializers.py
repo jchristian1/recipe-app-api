@@ -8,12 +8,14 @@ from core.models import (
     Tag,
     Ingredient,
 )
+
+
 class IngredientSerializer(serializers.ModelSerializer):
     """Serializer for ingredients."""
 
     class Meta:
         model = Ingredient
-        fields = ['id','name']
+        fields = ['id', 'name']
         read_only_fields = ['id']
 
 
@@ -38,6 +40,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             'ingredients',
         ]
         read_only_fields = ['id']
+
 
 class RecipeDetailSerializer(RecipeSerializer):
     """Serializer for recipe Detail view."""
@@ -65,7 +68,6 @@ class RecipeDetailSerializer(RecipeSerializer):
             )
             recipe.ingredients.add(ingredient_obj)
 
-
     def create(self, validated_data):
         """Create a recipe"""
         tags = validated_data.pop('tags', [])
@@ -86,11 +88,9 @@ class RecipeDetailSerializer(RecipeSerializer):
         if ingredients is not None:
             instance.ingredients.clear()
             self._get_or_create_ingredients(ingredients, instance)
+
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
         instance.save()
         return instance
-
-
-
