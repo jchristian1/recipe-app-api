@@ -50,7 +50,7 @@ def create_user(**params):
     return get_user_model().objects.create_user(**params)
 
 
-class PublicRecipeAPITest(TestCase):
+class PublicRecipeAPITests(TestCase):
     """Test unauthenticated API requests."""
 
     def setUp(self):
@@ -315,7 +315,7 @@ class PrivateRecipeApiTests(TestCase):
             'title':'Vietnamese Soup',
             'time_minutes': 25,
             'price': '2.55',
-            'ingredients': [{'name': 'Lemon'},{'name':'Fish_sauce'}],
+            'ingredients': [{'name': 'Lemon'},{'name':'Fish Sauce'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -336,7 +336,7 @@ class PrivateRecipeApiTests(TestCase):
         """Test creating an ingredient when updating a recipe."""
         recipe = create_recipe(user=self.user)
 
-        payload = {'ingredients': [{'name','Limes'}]}
+        payload = {'ingredients': [{'name':'Limes'}]}
         url = detail_url(recipe.id)
         res = self.client.patch(url, payload, format='json')
 
@@ -361,7 +361,7 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_clear_recipe_ingredients(self):
         """Test clearing recipe ingredientes."""
-        ingredient =  Ingredient.objects.create(user=self.user, name='garlic')
+        ingredient =  Ingredient.objects.create(user=self.user, name='Garlic')
         recipe = create_recipe(user=self.user)
         recipe.ingredients.add(ingredient)
 
