@@ -26,3 +26,6 @@ sudo docker compose run --rm app sh -c "python manage.py makemigrations"
 chown -R $(whoami):$(whoami) app/
 export UID=${UID} && export GID=${GID}
 sudo chown -R $USER:$USER .
+
+## RUN THE PROJECT IN DEPLOYMENT MODE OR SHUT IT DOWN
+sudo docker compose -f docker-compose-deploy.yml up/down
