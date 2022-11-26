@@ -17,7 +17,7 @@ sudo docker compose run --rm app sh -c "YOUR COMMAND"
 sudo docker compose run --rm app sh -c "python manage.py test"
 
 ##RUN flake FOR LINTING WITH DOCKER
-sudo docker compose run --rm app sh -c "flake"
+sudo docker compose run --rm app sh -c "flake8"
 
 ##RUN MIGRATIONS WHEN WE MAKE CHANGES TO THE CORE MODELS, SO CAN BE APPLIEND TO THE DATABASE
 sudo docker compose run --rm app sh -c "python manage.py makemigrations"
@@ -33,8 +33,8 @@ sudo docker compose -f docker-compose-deploy.yml up/down
 ## DELETE VOLUMES SO WE CAN RECREATE THEM AGAIN WITH THE COMMAND sudo docker compose -f docker-compose-deploy.yml up
 docker compose -f docker-compose-deploy.yml down --volumes
 
-## REBUILT DOCKER IMAGE PRODUCTION SERVER CONFIGURATION FOR PROXY you must be at proxy directory
+## REBUILD DOCKER IMAGE PRODUCTION SERVER CONFIGURATION FOR PROXY you must be at proxy directory
 docker compose -f docker-compose-proxy.yml build
 
-## REBUILT DOCKER IMAGE PRODUCTION SERVER CONFIGURATION
+## REBUILD DOCKER IMAGE PRODUCTION SERVER CONFIGURATION
 docker-compose -f docker-compose-deploy.yml build

@@ -38,6 +38,7 @@ def image_upload_url(recipe_id):
     """Create and return an image upload URL."""
     return reverse('recipe:recipe-upload-image', args=[recipe_id])
 
+
 def create_recipe(user, **params):
     """Create and return a sample recipe"""
     defaults = {
@@ -385,12 +386,12 @@ class PrivateRecipeApiTests(TestCase):
         r1 = create_recipe(user=self.user, title='Thai Vegetable Curry')
         r2 = create_recipe(user=self.user, title='Aubergine with taihini')
         tag1 = Tag.objects.create(user=self.user, name='Vegan')
-        tag2 = Tag.objects.create(user= self.user, name='Vegetarian')
+        tag2 = Tag.objects.create(user=self.user, name='Vegetarian')
         r1.tags.add(tag1)
         r2.tags.add(tag2)
         r3 = create_recipe(user=self.user, title='Fish and chips')
 
-        params = {'tags':f'{tag1.id},{tag2.id}'}
+        params = {'tags': f'{tag1.id},{tag2.id}'}
         res = self.client.get(RECIPES_URL, params)
 
         s1 = RecipeSerializer(r1)
@@ -421,9 +422,6 @@ class PrivateRecipeApiTests(TestCase):
         self.assertNotIn(s3.data, res.data)
 
 
-
-
-
 class ImageUploadTests(TestCase):
     """Test for the image upload API."""
 
@@ -441,9 +439,9 @@ class ImageUploadTests(TestCase):
 
     def test_upload_image(self):
         """Test uploading an image to a recipe."""
-        url =  image_upload_url(self.recipe.id)
+        url = image_upload_url(self.recipe.id)
         with tempfile.NamedTemporaryFile(suffix='.jpg') as image_file:
-            img = Image.new('RGB', (10,10))
+            img = Image.new('RGB', (10, 10))
             img.save(image_file, format='JPEG')
             image_file.seek(0)
             payload = {'image': image_file}

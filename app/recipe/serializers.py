@@ -95,6 +95,7 @@ class RecipeDetailSerializer(RecipeSerializer):
         instance.save()
         return instance
 
+
 class RecipeImageSerializer(serializers.ModelSerializer):
     """Serializer for uploadinf images to recipes."""
 
