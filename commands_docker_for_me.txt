@@ -29,3 +29,12 @@ sudo chown -R $USER:$USER .
 
 ## RUN THE PROJECT IN DEPLOYMENT MODE OR SHUT IT DOWN
 sudo docker compose -f docker-compose-deploy.yml up/down
+
+## DELETE VOLUMES SO WE CAN RECREATE THEM AGAIN WITH THE COMMAND sudo docker compose -f docker-compose-deploy.yml up
+docker compose -f docker-compose-deploy.yml down --volumes
+
+## REBUILT DOCKER IMAGE PRODUCTION SERVER CONFIGURATION FOR PROXY you must be at proxy directory
+docker compose -f docker-compose-proxy.yml build
+
+## REBUILT DOCKER IMAGE PRODUCTION SERVER CONFIGURATION
+docker-compose -f docker-compose-deploy.yml build
